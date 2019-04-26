@@ -1,0 +1,14 @@
+#entered in cli
+#tips
+#
+
+touch list; touch list.txt; touch list1.txt; touch list2.txt; touch list..txt;  touch .list.txt;
+	doesnt work
+find l* | grep -G "([0-9a-zA-Z_\.-]*)\.?([0-9a-zA-Z]*)" #-G basic regex
+	works because of escape char \
+find l* | grep -G "\([0-9a-zA-Z_\.-]*\)\.\?\([0-9a-zA-Z]*\)" #-G basic regex
+find l* | grep -E "([0-9a-zA-Z_\.-]*)\.?([0-9a-zA-Z]*)" #-E regex
+
+find *b grep -E "([0-9a-zA-Z_\.-]*)\.?([0-9a-zA-Z]*)" #find all file starts with "b" that may have an extention
+
+grep -E "Exception|\sat" example.log
