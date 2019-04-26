@@ -1,0 +1,96 @@
+#tips
+#"-" always at end of [] so "-" wont be treated as a range
+	#find l* | grep -E "([0-9a-zA-Z-_\.]*)\.?([0-9a-zA-Z]*)" #-E regex
+	#grep: Invalid range end
+#https://regex101.com
+
+^ #beginning
+$ #end
+. #any char
+? #0 or 1
+* #0 or any aka all
++ #1 or more
+\ #escape special char
+[] #match char in brackets
+| # or
+() #grouping
+{x} #exactly x number
+{x, y} #between x and y
+/ #delimiters
+- #range
+
+/^[a-zA-Z0-9_-]{3,8}$/ # match at beginning to end 3-8 characters alphanumeric with - and _
+/^\+[1-9] \d{3}-\d{3}-\d{4}$/ #match phone number 1 808-555-555
+/^([a-zA-Z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/ #match email
+	# the + is one or more, \d same as 0-9
+	/^ #beginning
+	$/ #end
+	() #grouping
+	([a-zA-Z0-9_\.-]+) #email name. any [alphanumeric, _, \. escape char to find actual ., -,] that + = one or more
+
+#email address pattern eg: claudia.sand@hotmail.com
+/^([a-zA-Z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
+
+#phone number pattern eg: 286-555-3646
+/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/
+
+
+Task	Text	Capture Groups	 
+Capture	415-555-1234	415	Success
+Capture	650-555-2345	650	Success
+Capture	(416)555-3456	416	Success
+Capture	202 555 4567	202	Success
+Capture	4035555678	403	Success
+Capture	1 416 555 9292	416
+
+(\d[\s-])?\(?(\d{3})\)?[\s-]?\d{3}[\s-]?\d{4}
+
+#hex numbers eg: #2367ff
+/^#?([a-f0-9]{6}|[a-f0-9]{3})$/
+
+#URLs eg: https://www.skillsoft.com
+/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/
+
+# IP Address eg: 192.168.1.100
+/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
+
+#Match 3.14529, -255.34, 128, 1.9e10, 123,340.00 Skip	720p
+^-?\d+(,\d+)*(\.\d+(e\d+)?)?$
+
+#HTML Capture <a or <div etc.
+<(\w+).
+
+#You can also capture tag contents ">This is a link<" from <a>This is a link</a>
+#Capture	">Link<" from <a href='https://regexone.com'>Link</a>	a	Failed
+#Capture	">Test<" from <div class='test_style'>Test</div>	div	Failed
+#Capture	">Hello <" from <div>Hello <span>world</span></div>
+#
+>([\w\s]*)< 
+
+#Capture	">Hello <" and ">world<" from <div>Hello <span>world</span></div>
+>(\w+\s?)<
+
+#or even attribute values i.e. "='test_style'" from <div class='test_style'>Test</div>
+#"='https://regexone.com'" from <a href='https://regexone.com'>Link</a>
+='([\w://.]*)' 
+
+#capture name_name.gif|jpg|png and not .jpg.tmp
+(\w+)\.(gif|jpg|png)$
+
+Examples of commonly used regular expression to match:
+•IP Address:\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}
+•Port Number:\d{1,5}
+•MAC Address:(?:[0-9a-fA-F]{2}\:){5}[0-9a-fA-F]{2}
+•Protocol:(tcp|udp|icmp|gre)
+•Device Time:\w{3}\s\d{2}\s\d{2}:\d{2}:\d{2}
+•White Space:\s
+•Tab:\t
+•Match Anything:*? //Lazy * //Greedy
+
+#capture "|A02475991|cat=Logon" from 
+#<182>Oct 02 14:22:21 10.0.120.12 LEEF:1.0lOracle|NetViewer|3.6|A02475991|cat=Logon	devTimeFormt=MMM dd HH:mm:ss devTime=Apr 27 14:56:11 datMAC=53:26:71:EC:39:95 gat=sliz.devops.crund.com
+(?:.*?\|){4}(.*?)\|.*?cat\=(.*?)\t
+
+
+
+Logon\sType:.*?(\d{1,2})
