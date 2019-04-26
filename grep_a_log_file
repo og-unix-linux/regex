@@ -1,0 +1,27 @@
+grep -E "Exception|\sat" example.log
+
+#####example.log
+java.lang.NullPointerException
+ at twoten.TwoTenB.<init>(TwoTenB.java:29)
+ at javapractice.JavaPractice.main(JavaPractice.java:32)
+Java Result: 1
+
+Exception in thread "main" java.lang.NullPointerException
+ at TestBox.go(TestBox.java:9)
+ at TestBox.main(TestBox.java:6)
+
+Exception in thread "main" java.io.FileNotFoundException: C:\Users\Diogo\Desktop\Krs_Grafo\Graph.txt (O sistema não pode encontrar o arquivo especificado)
+ at java.io.FileInputStream.open(Native Method)
+ at java.io.FileInputStream.<init>(FileInputStream.java:120)
+ at java.io.FileInputStream.<init>(FileInputStream.java:79)
+ at java.io.FileReader.<init>(FileReader.java:41)
+ at krs_grafo.Krs_Grafo.main(Krs_Grafo.java:51)
+Java Result: 1
+
+java.io.FileNotFoundException: input.txt (No such file or directory)
+        at java.io.FileInputStream.open(Native Method)
+        at java.io.FileInputStream.(FileInputStream.java:146)
+        at java.io.FileReader.(FileReader.java:72)
+        at main.java.FileNotFoundExceptionExample.main(FileNotFoundExceptionExample.java:16)
+Exception in thread "main" java.lang.NullPointerException
+        at main.java.FileNotFoundExceptionExample.main(FileNotFoundExceptionExample.java:30)
